@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Private Wealth | RM Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  <style>.client-aum{display:flex;flex-direction:column;align-items:flex-end;gap:5px}.client-aum small{font-size:10px;color:#6e8086}.idle-cash{display:none;background:#e7f6ed;border:1px solid #a9d8b8;color:#2d7a4c;border-radius:999px;padding:4px 10px;font:600 10px 'DM Sans',sans-serif;line-height:1}.other-client .idle-cash{display:inline-block}.small-talk{appearance:none;border:1px solid #9ba2d4;background:#f0f1fb;color:#28348c;border-radius:999px;padding:4px 10px;font:600 10px 'DM Sans',sans-serif;line-height:1;cursor:pointer;transition:background .18s ease,border-color .18s ease,transform .12s ease}.small-talk:hover{background:#e2e4f6;border-color:#737fbd}.small-talk:active{transform:scale(.96)}#clientList .small-talk{display:none;pointer-events:none}.right-sort{font:400 10px 'DM Sans',sans-serif;color:#6e8086;border:1px solid #d7e2e2;border-radius:6px;background:#fff;padding:4px 7px}.client-meeting{display:none}.other-client .client-meeting,.scheduled-client .client-meeting{display:block;font-size:10px!important;line-height:1.1!important;margin:2px 0 0!important;padding:0!important}.small-talk-panel{display:none;border-top:1px solid var(--line);background:#fbfcfc;padding:17px 25px}.small-talk-panel.open{display:block}.small-talk-panel span{display:block;color:#287c75;font-size:9px;letter-spacing:1px;font-weight:700;margin-bottom:6px}.small-talk-panel h3{font:400 14px Manrope;margin:0 0 5px}.small-talk-panel p{font-size:11px;color:#819096;margin:0}@media(max-width:580px){.small-talk-panel{padding:15px 19px}}.client-details{display:flex;max-height:0;opacity:0;overflow:hidden;padding-top:0;padding-bottom:0;transition:max-height .28s ease,opacity .2s ease,padding .28s ease}.client-details.open{max-height:120px;opacity:1;padding:16px 25px}.small-talk-panel{position:relative;display:block;max-height:0;opacity:0;overflow:hidden;padding-top:0;padding-bottom:0;transition:max-height .28s ease,opacity .2s ease,padding .28s ease}.small-talk-panel.open{max-height:500px;opacity:1;padding:17px 25px}.small-talk-input{appearance:none;border:1px solid #c9bfe8;background:#f3f0fb;color:#65558f;border-radius:999px;padding:4px 10px;font:600 10px DM Sans,sans-serif;line-height:1;cursor:pointer;position:absolute;top:14px;right:25px}.small-talk-input:hover{background:#e9e3f7;border-color:#a998d3}@media(max-width:580px){.client-details.open{padding:15px 19px}.small-talk-panel.open{padding:15px 19px;max-height:500px}}.talk-topic{border-top:1px solid var(--line);padding-top:9px;margin-top:9px}.talk-topic h3{font:600 12px Manrope;margin:0 0 4px}.talk-topic p{margin:0}.talk-news-loading{color:#9ba9ad!important}.talk-news-loading:after{content:"";display:inline-block;width:10px;height:10px;margin-left:7px;vertical-align:-1px;border:1px solid #cbdedd;border-top-color:#287c75;border-radius:50%;animation:spin .75s linear infinite}.client-meeting{display:none!important}.other-client .client-meeting,.scheduled-client .client-meeting{display:block!important;font-size:10px!important;line-height:1.1!important;margin:2px 0 0!important;padding:0!important}#clientList .client-meta{margin-bottom:0!important}#clientList .client-card{padding-bottom:16px!important}</style></head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">J</span><span>JUNIPER</span><small>PRIVATE WEALTH</small></div>
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a class="active" href="#clients"><span>⌂</span> Client book</a>
+          <a href="#activity"><span>◷</span> Activity</a>
+          <a href="#insights"><span>◒</span> Insights</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <button class="side-link"><span>?</span> Help centre</button>
+          <button class="profile"><span class="avatar">PO</span><span><b>Priscilla Ong</b><small>Relationship Manager</small></span><span class="chevron">⌄</span></button>
+        </div>
+      </aside>
+
+      <main class="content" id="clients">
+        <header class="topbar">
+          <div><p class="eyebrow">TUESDAY, 5 SEPTEMBER 2026</p><h1>Good morning, Priscilla<span class="wave">✦</span></h1></div><div class="brand top-brand"><img src="../frontend/public/photo_2026-09-05_16-00-17.jpg" alt="Julius Baer" /></div>
+        </header>
+
+        <section class="book-header">
+          <div><p class="eyebrow">YOUR CLIENT BOOK</p><h2>Clients <span class="count" id="clientCount">—</span></h2></div>
+          <div class="header-controls"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search clients or portfolios" /></label></div>
+        </section>
+
+        <div class="summary-row"><div><span class="summary-label">TOTAL CLIENT AUM</span><strong id="totalAum">—</strong></div><div><span class="summary-label">ACTIVE PORTFOLIOS</span><strong id="portfolioCount">—</strong></div><div><span class="summary-label">REVIEWS THIS MONTH</span><strong id="reviewCount">—</strong></div></div>
+
+        <div class="client-board"><section class="board-column locked-column"><div class="column-heading"><h3>Upcoming KYC</h3><span>Locked</span></div><div id="kycColumn" class="column-list"></div></section><section class="board-column"><div class="column-heading"><h3>Upcoming meetings</h3><span>Drag clients here</span></div><div id="meetingColumn" class="column-list drop-zone"><p class="drop-hint">Drop clients here to plan a meeting</p></div></section><section class="board-column"><div class="column-heading"><h3>Other clients</h3><select class="right-sort" id="rightSort" aria-label="Sort other clients"><option value="id-asc">Client ID ↑</option><option value="meeting-desc">Days since meeting — most first</option><option value="idle-cash">Idle cash — top first</option></select></div><div id="clientList" class="column-list"></div></section></div>
+        <div id="emptyState" class="empty-state" hidden><div class="empty-icon">⌕</div><h3>No matches found</h3><p>Try searching for a different client or portfolio.</p></div>
+      </main>
+    </div>
+    <style>
+      .client-details{display:none;border-top:1px solid var(--line);background:#fbfcfc;padding:16px 25px;gap:42px}
+      .client-details.open{display:flex}
+      .client-details span{display:block;color:#94a0a5;letter-spacing:1px;font-size:9px;font-weight:700;margin-bottom:6px}
+      .client-details b{font:700 14px Manrope;color:var(--ink)}
+      .kyc-alert{display:inline-block;margin-top:8px;color:#277c60;background:#e8f7ef;border-radius:12px;padding:5px 9px;font-size:10px;font-weight:700}
+      .kyc-alert.urgent{color:#a45d32;background:#fff3e8}
+      .client-head{cursor:pointer}
+      .client-head{transition:background .18s ease,box-shadow .18s ease,transform .12s ease}
+      .client-head:hover{background:#fbfdfd;box-shadow:inset 3px 0 0 var(--teal)}
+      .client-head:active{transform:scale(.998);background:#f3faf9}
+      .portfolio:not(.add-portfolio){cursor:pointer}
+      .collapse{display:none}
+      .add-portfolio{display:none!important}
+      .client-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}.board-column{min-width:0}.column-heading{display:flex;justify-content:space-between;align-items:center;margin:0 3px 10px}.column-heading h3{font:700 13px Manrope;margin:0}.column-heading span{font-size:9px;color:#91a0a5}.column-list{display:grid;gap:12px;min-height:100px}.drop-zone{border:1px dashed #b8cbcc;border-radius:10px;padding:14px;background:#fbfdfd}.drop-zone .drop-hint{text-align:center;color:#91a0a5;font-size:11px;margin:34px 10px}.drop-zone:has(.client-card) .drop-hint{display:none}.locked-column .client-head{cursor:pointer}.board-column .client-card{box-shadow:0 5px 18px rgba(24,48,57,.05)}.board-column .client-head{padding:18px}.board-column .portfolio-grid{padding:16px}.dragging{opacity:.45}.locked-column{pointer-events:auto}@media(max-width:900px){.client-board{grid-template-columns:1fr}.board-column{width:100%}}
+      .sidebar{display:none}
+      .top-brand{display:grid;margin:0;grid-template-columns:28px auto;align-self:flex-start;color:var(--navy)}
+      .top-brand small{color:#819096}
+      .top-brand{display:block;width:220px;flex-shrink:0}
+      .top-brand .brand-mark{width:36px;height:36px;font-size:18px;border-radius:10px}
+      .top-brand small{font-size:9px}
+      .top-brand img{display:block;width:220px!important;max-width:none;height:auto;object-fit:contain}
+      @media(max-width:580px){.client-details{padding:15px 19px;gap:20px;flex-wrap:wrap}.client-details>div{min-width:115px}}
+    </style>
+    <script src="local-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

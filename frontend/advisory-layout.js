@@ -1,0 +1,1 @@
+document.querySelectorAll('.options-grid .option-card').forEach(card=>{const rationale=card.querySelector('.rationale-toggle');const actions=card.querySelector('.action-toggle');if(rationale&&actions){const row=document.createElement('div');row.className='option-controls';rationale.parentNode.insertBefore(row,rationale);row.append(rationale,actions);}});

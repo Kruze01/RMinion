@@ -1,0 +1,1 @@
+const discretionaryId=new URLSearchParams(location.search).get('id');const discretionaryPortfolio=window.LOCAL_DATA.portfolios.find(p=>p.portfolio_id===discretionaryId);if(discretionaryPortfolio?.service_model==='Discretionary'){const sections=document.querySelectorAll('.advisory-section');if(sections[1])sections[1].remove();}
