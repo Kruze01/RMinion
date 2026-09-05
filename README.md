@@ -23,11 +23,11 @@ RMinion operates via a **3-Agent Multi-Tier Pipeline**:
    │    The Researcher     │ ── Synthesizes root causal drivers & single-sentence catalyst
    └───────────────────────┘
                │ (Stored in DB / Displayed in RM Dashboard)
-               ▼
+               
    ┌───────────────────────┐
-   │       Agent 3         │ ── Triggered on-demand when RM clicks an alert
-   │     The Advisor       │ ── Calculates LTV headroom, mandate breaches & cash gaps
-   └───────────────────────┘    Generates actionable strategic options for the client
+   │       Agent 3         │ ── Triggered on-demand when RM clicks "small talk" button
+   │     The Researcher    │ ── Retrieves live news related to topic and compresses into bite-sized info
+   └───────────────────────┘    
 ```
 
 ### 1. Agent 1: The Watchdog (Noise Gatekeeper)
@@ -41,15 +41,12 @@ RMinion operates via a **3-Agent Multi-Tier Pipeline**:
 - **Output**: Synthesizes a causal summary linking the price drop to a verified macro driver (or outputs *"No clear logged catalyst found"* if uncorrelated).
 
 ### 3. Agent 3: The Advisor (Strategic Engine)
-- **Trigger**: On-demand when the RM clicks on an active alert in the UI.
-- **Evaluation**: Cross-references:
-  - **Credit Facility LTV**: Current vs. margin call threshold, calculating remaining headroom.
-  - **Mandate Breaches**: Position concentrations (>15%) and asset allocation limits.
-  - **Cash Flow Gap**: Upcoming planned liquidity needs vs. liquid cash available.
-  - **Risk Profile Alignment**: Equity weighting vs. stated risk score.
-  - **Client Preferences**: Contextual constraints extracted from RM interaction history.
-- **Output**: Ranked strategic action options with rationales and concrete next steps (e.g., collar options hedging, collateral top-ups, phased rebalancing).
-
+- **Trigger**: On-demand when the RM clicks on "small talk" button in the UI.
+- **Evaluation**: 
+  - **Vector embedding**: Converts topic text into embeddings.
+  - **Find trends**: Use semantic similarity to find trending events out there.
+  - **Generate key points**: Compress the information into points form.
+- **Output**: Summarized useful key points for the RM to start a small talk.
 ---
 
 ## Tech Stack
@@ -159,14 +156,6 @@ npm run dev -- --host
 Open `http://localhost:5173` in your browser.
 
 ---
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/v1/alerts` | Fetches all detected alerts for the RM dashboard |
-| `POST` | `/api/v1/market-trigger` | Simulates a market price drop event to run Agents 1 & 2 |
-| `POST` | `/api/v1/alerts/{alert_id}/generate-brief` | Runs Agent 3 on-demand to produce strategic options |
 
 ### Testing a Market Event
 You can inject a simulated market move using `curl` or PowerShell:
